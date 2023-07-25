@@ -129,3 +129,43 @@ def stories(endings: [int], choices: [[int]], option: int) -> int:
         else:
             page+=1
 
+def find_good_endings(good_endings, bad_endings, choices):
+    res = set()
+    page = 1
+    first_values = [x[0] for x in choices]
+    def dfs(path, page: int ):
+        if page in good_endings:
+            res.add(page)
+            return
+        if page in bad_endings:
+            return
+        if page in path:
+            return
+        if page in first_values:
+            for choice in choices:
+                if page == choice[0]:
+                    dfs(path + [page], choice[1])
+                    dfs(path + [page], choice[2])
+        else:
+            dfs(path + [page], page+1)
+    dfs([], 1)
+    return list(res)
+
+# assert(find_good_endings(good_endings, bad_endings, choices1) == [25])
+# assert(find_good_endings(good_endings, bad_endings, choices2) == [])
+# assert(find_good_endings(good_endings, bad_endings, choices3) == [])
+# assert(find_good_endings(good_endings, bad_endings, choices4) == [34])
+# assert(find_good_endings(good_endings, bad_endings, choices5) == [10])
+# assert(find_good_endings(good_endings, bad_endings, choices6) == [15, 34])
+# assert(find_good_endings(good_endings, bad_endings, choices7) == [15, 25, 34])
+# assert(find_good_endings(good_endings, bad_endings, choices8) == [10])
+# assert(find_good_endings(good_endings, bad_endings, choices9) == [10])
+print(find_good_endings(good_endings, bad_endings, choices1))
+print(find_good_endings(good_endings, bad_endings, choices2))
+print(find_good_endings(good_endings, bad_endings, choices3))
+print(find_good_endings(good_endings, bad_endings, choices4))
+print(find_good_endings(good_endings, bad_endings, choices5))
+print(find_good_endings(good_endings, bad_endings, choices6))
+print(find_good_endings(good_endings, bad_endings, choices7))
+print(find_good_endings(good_endings, bad_endings, choices8))
+print(find_good_endings(good_endings, bad_endings, choices9))
