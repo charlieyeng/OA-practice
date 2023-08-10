@@ -107,33 +107,7 @@ def finishable(teleporters, die, start, end):
                 return True
         return False
 
-        # for i in range(1, die + 1):
-        #     next_square = square + i
-        #     if next_square in visited:
-        #         continue
-
-        #     for t in teleporters:
-        #         t_start, t_end = map(int, t.split(','))
-        #         if next_square == t_start:
-        #             next_square = t_end
-        #             break
-
-        #     if next_square <= end and next_square not in visited and dfs(next_square, visited):
-        #         return True
-
-        # return False
-
     return dfs(start, set())
-    
-
-
-
-# print(destinations(teleporters1,  6,   0,    20))
-# print(destinations(teleporters2,  6,  46,   100))
-# print(destinations(teleporters2, 10,   0,    50))
-# print(destinations(teleporters3, 10,  95,   100))
-# print(destinations(teleporters3, 10,  70,   100))
-# print(destinations(teleporters4,  6,   0,   100))
 
 print(finishable(teleporters1, 4,   0,    20))
 print(finishable(teleporters2, 4,   0,    20))
